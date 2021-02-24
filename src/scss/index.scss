@@ -3,9 +3,6 @@ $handwriting: "Nothing You Could Do", cursive;
 
 @mixin graph-paper-background($colour: "blue") {
     background-image: url("../images/graph-paper-#{$colour}.png");
-    // background-repeat: repeat;
-    // background-position-x: center;
-    // background-size: units-to-size(1) auto;
 }
 
 @function units-to-size($units) {
