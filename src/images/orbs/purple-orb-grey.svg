@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100" height="100" version="1.1" viewBox="0 0 26.458 26.458" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <radialGradient id="radialGradient2334" cx="60.898" cy="184.09" r="7.6729" gradientTransform="matrix(1.0345 0 0 1.0345 -87.702 -173.36)" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#f00" offset="0"/>
+   <stop stop-color="#ec0000" offset="1"/>
+  </radialGradient>
+  <filter id="filter1038-3" color-interpolation-filters="sRGB">
+   <feFlood flood-color="rgb(0,0,0)" flood-opacity=".49804" result="flood"/>
+   <feComposite in="flood" in2="SourceGraphic" operator="in" result="composite1"/>
+   <feGaussianBlur in="composite1" result="blur" stdDeviation="0.2"/>
+   <feOffset dx="-2.77556e-017" dy="-2.77556e-017" result="offset"/>
+   <feComposite in="offset" in2="offset" operator="atop" result="composite2"/>
+  </filter>
+  <radialGradient id="radialGradient2336" cx="60.898" cy="184.09" r="7.6729" gradientTransform="translate(-85.603 -167.01)" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#8a2be2" offset="0"/>
+   <stop stop-color="#8028d1" offset="1"/>
+  </radialGradient>
+  <radialGradient id="radialGradient2338" cx="230.16" cy="695.78" r="50" gradientTransform="matrix(.26458 0 0 .2643 -38.061 12.64)" gradientUnits="userSpaceOnUse" xlink:href="#linearGradient882"/>
+  <linearGradient id="linearGradient882">
+   <stop stop-color="#f00" offset="0"/>
+   <stop stop-color="#ec0000" offset=".58"/>
+   <stop stop-color="#de0000" offset="1"/>
+  </linearGradient>
+  <clipPath id="clipPath1144-8">
+   <circle cx="23.062" cy="196.46" r="12.568" fill="#0ff" fill-rule="evenodd" stroke-width=".47008"/>
+  </clipPath>
+  <filter id="filter1118-7" color-interpolation-filters="sRGB">
+   <feFlood flood-color="rgb(0,0,0)" flood-opacity=".49804" result="flood"/>
+   <feComposite in="flood" in2="SourceGraphic" operator="in" result="composite1"/>
+   <feGaussianBlur in="composite1" result="blur" stdDeviation="0.2"/>
+   <feOffset dx="-2.77556e-017" dy="-2.77556e-017" result="offset"/>
+   <feComposite in="offset" in2="offset" operator="atop" result="composite2"/>
+  </filter>
+  <radialGradient id="radialGradient2344" cx="230.16" cy="695.78" r="50" gradientTransform="matrix(.26458 0 0 .2643 -85.603 -166.82)" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#f00" offset="0"/>
+   <stop stop-color="#8028d1" offset=".58"/>
+   <stop stop-color="#7825c5" offset="1"/>
+  </radialGradient>
+ </defs>
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g transform="translate(-154.59 -178.78)">
+  <g transform="matrix(1 0 0 1.0011 192.53 174.91)" fill-rule="evenodd">
+   <circle cx="-24.705" cy="17.083" r="12.568" fill="#e3dfd3" stroke-width=".47008"/>
+   <circle cx="-24.705" cy="17.083" r="7.9375" fill="url(#radialGradient2334)" filter="url(#filter1038-3)" stroke-width="1.0819"/>
+   <circle cx="-24.705" cy="17.083" r="7.6729" fill="url(#radialGradient2336)" stroke-width="1.0458"/>
+   <g fill="url(#radialGradient2338)" stroke-width=".14286">
+    <path transform="translate(-47.767 -179.38)" d="m23.63 183.33v3.9682c4.787 0.41183 8.464 4.4164 8.4667 9.2211-0.0031 1.3226-0.28941 2.6292-0.83974 3.8318l3.4499 1.9714c0.88839-1.8059 1.353-3.7907 1.3586-5.8033-0.0084-6.9918-5.4562-12.77-12.435-13.189z" clip-path="url(#clipPath1144-8)" filter="url(#filter1118-7)"/>
+    <path transform="rotate(240.7 -53.34 120.74)" d="m23.63 183.33v3.9682c4.787 0.41183 8.464 4.4164 8.4667 9.2211-0.0031 1.3226-0.28941 2.6292-0.83974 3.8318l3.4499 1.9714c0.88839-1.8059 1.353-3.7907 1.3586-5.8033-0.0084-6.9918-5.4562-12.77-12.435-13.189z" clip-path="url(#clipPath1144-8)" filter="url(#filter1118-7)"/>
+    <path transform="rotate(120.14 50.805 93.003)" d="m23.63 183.33v3.9682c4.787 0.41183 8.464 4.4164 8.4667 9.2211-0.0031 1.3226-0.28941 2.6292-0.83974 3.8318l3.4499 1.9714c0.88839-1.8059 1.353-3.7907 1.3586-5.8033-0.0084-6.9918-5.4562-12.77-12.435-13.189z" clip-path="url(#clipPath1144-8)" filter="url(#filter1118-7)"/>
+   </g>
+   <path d="m-25.499 3.868a13.229 13.229 0 0 0-12.435 13.201 13.229 13.229 0 0 0 1.3906 5.8911l3.422-2.0562a9.2604 9.2604 0 0 1-0.84388-3.8349 9.2604 9.2604 0 0 1 8.4667-9.2201zm1.5875 0.0119v3.9682a9.2604 9.2604 0 0 1 8.4667 9.2211 9.2604 9.2604 0 0 1-0.83974 3.8318l3.4499 1.9715a13.229 13.229 0 0 0 1.3586-5.8033 13.229 13.229 0 0 0-12.435-13.189zm-8.432 18.408-3.4081 2.0479a13.229 13.229 0 0 0 11.046 5.9624 13.229 13.229 0 0 0 11.092-6.0425l-3.4432-1.9673a9.2604 9.2604 0 0 1-7.6491 4.0411 9.2604 9.2604 0 0 1-7.6383-4.0416z" fill="url(#radialGradient2344)" stroke-width=".14286"/>
+  </g>
+ </g>
+</svg>
