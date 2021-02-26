@@ -10,6 +10,7 @@
     </head>
     <body>
         <header class="graph-paper">
+            <div class="arrows-cover"></div>
             <div class="arrows"></div>
             <div class="contents">
                 <h1>Experimental</h1>
@@ -22,6 +23,7 @@
             
         </header>
         <div id="fixed-field">
+            <div class="arrows-cover-fixed"></div>
             <div class="arrows-fixed"></div>
             <div class="boundary"></div>
             <div class="orb">
@@ -32,6 +34,13 @@
         </div>
         <section id="about" class="graph-paper">
             <div class="container">
+                <div id="iPhone">
+                    <div id="video-container">
+                        <video width="100%" height="auto" controls muted autoplay>
+                            <source src="videos/iPhone11.mp4">
+                        </video>
+                    </div>
+                </div>
                 <h2>Physics-defying puzzles</h2>
                 <p>Experimental technology has been developed that enables gravity to be controlled. Your job is to test it.</p>
                 <p>Manipulate gravity with touches and swipes as you complete a series of trials exploring the capabilities of these new technologies.</p>
@@ -48,12 +57,24 @@
             </div>
             <div>
                 <h3>Developer</h3>
-                <a href="www.matthewocallaghan.uk">Matthew <span class="before-apostrophe">O</span>'Callaghan</a>
+                <a href="https://www.matthewocallaghan.uk">Matthew O'Callaghan</a>
             </div>
             <div class="copyright">
                 <small>&copy;2021 Matthew <span class="before-apostrophe">O</span>'Callaghan</small>
             </div>
         </footer>
         <script src="js/index.min.js"></script>
+        <script>
+            var resizeTimer;
+            function reset() {
+                document.body.classList.add("resize-animation-stopper");
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    document.body.classList.remove("resize-animation-stopper");
+                }, 400);
+            }
+            window.addEventListener("resize", reset);
+            window.addEventListener("orientationchange", reset);
+        </script>
     </body>
 </html>

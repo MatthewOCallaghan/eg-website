@@ -1,6 +1,17 @@
 $marker: "Permanent Marker", cursive;
 $handwriting: "Nothing You Could Do", cursive;
 
+// Scrpt in index.html adds this class to <body> on window resize
+// Prevents all animations running during resize
+// This stops animations orb-left-to-right and orb-colour-change getting out of sync by resetting them on resize
+.resize-animation-stopper * {
+    animation: none !important;
+
+    .orb-image {
+        display: none; // Hides orb during resize (otherwise it gets stuck to left of screen during resize)
+    }
+  }
+
 @mixin graph-paper-background($colour: "blue") {
     background-image: url("../images/graph-paper-#{$colour}.png");
 }
@@ -38,6 +49,8 @@ header, section {
     width: 100%;
 }
 
+$header-h1-margin-bottom: 0.4;
+$header-p-margin: 0.35;
 header {
     @include graph-paper-background("blue");
     position: relative;
@@ -51,7 +64,7 @@ header {
         text-align: center;
         font-size: units-to-size(0.82);
         margin: 0;
-        margin-bottom: units-to-size(0.3);
+        margin-bottom: units-to-size($header-h1-margin-bottom);
     }
 
     #gravity-image {
@@ -64,17 +77,18 @@ header {
         text-align: center;
         font-size: Max(21px, units-to-size(0.315));
         font-weight: bold;
-        margin: units-to-size(0.2);
+        margin: units-to-size($header-p-margin);
     }
 
     a {
         display: block;
         margin: auto;
-        text-align: center;
+        
+        width: units-to-size(2);
+        min-width: 120px; // Min height of 'Download on the App Store' image is 40px according to their guidelines - thus min-width = 120px as width/height ratio is about 3
 
         img {
-            width: units-to-size(2);
-            min-width: 120px; // Min height of 'Download on the App Store' image is 40px according to their guidelines - thus min-width = 120px as width/height ratio is about 3
+            width: 100%;
             height: auto;
         }
     }
@@ -91,6 +105,26 @@ header {
     background-size: $arrow-width;
     z-index: -10;
     animation: arrow-down 0.9s linear 0s infinite normal;
+}
+
+// Cover arrows generating off screen
+// Can be seen on e.g. Safari iOS by pulling page down
+.arrows-cover {
+    width: 100%;
+    height: $arrow-height;
+    position: absolute;
+    top: calc(-1 * #{$arrow-height});
+    left: 0;
+    background-color: white;
+    z-index: -5;
+}
+
+.arrows-cover-fixed {
+    @extend .arrows-cover;
+    height: 100%;
+    width: $arrow-height;
+    top: 0;
+    left: calc(-1 * #{$arrow-height});
 }
 
 .arrows-fixed {
@@ -140,14 +174,14 @@ header {
         width: units-to-size(1);
         position: absolute;
         top: units-to-size(0.15);
-        animation: orb-left-to-right 2s ease-in 0s infinite normal;
+        animation: orb-left-to-right 3s ease-in 0s infinite normal;
 
         .orb-image {
             width: 100%;
             height: 100%;
             background-image: url("../images/orbs/red-orb-grey.svg");
             background-size: cover;
-            animation: orb-colour-change 10s step-end 0s infinite normal;
+            animation: orb-colour-change 15s step-end 0s infinite normal;
         }
     }
 
@@ -205,7 +239,7 @@ h2 {
 a, p {
     font-family: $handwriting;
     text-align: center;
-    font-size: Max(15px, units-to-size(0.225));
+    font-size: Max(20px, units-to-size(0.225)); // Min size was originally 15px (which is to scale with other min sizes) but it was too small (especailly with handwriting font)
 }
 
 h3 {
@@ -214,8 +248,58 @@ h3 {
     margin-top: 0;
 }
 
+$iPhoneUnitsWidth: 3 * 1.15; // Video is 3 units wide, iPhone image is about 1.15 width of screen portion
+$iPhoneImageHeightWidthRatio: 2978 / 1484; // iPhone image size is 1484x2978
+#iPhone {
+    margin: auto;
+    width: units-to-size($iPhoneUnitsWidth);
+    height: units-to-size($iPhoneUnitsWidth * $iPhoneImageHeightWidthRatio);
+    position: relative;
+    margin-bottom: units-to-size(0.5);
+
+    &::after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: absolute;
+        z-index: 10;
+        background-image: url("../images/iPhone.png");
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        pointer-events: none;
+        transition: opacity 0.5s;
+    }
+
+    &:hover, &:focus {
+        &::after {
+            opacity: 0;
+        }
+    }
+
+    #video-container {
+        margin: auto;
+        width: units-to-size(3);
+        position: absolute;
+        z-index: 5;
+        display: block;
+        top: units-to-size(.23);
+        left: units-to-size(.24);
+    }
+
+    video {
+        border-radius: units-to-size(0.2);
+        outline: none;
+    }
+}
+
 section .container {
-    padding: units-to-size(0.5) units-to-size(1);
+    padding: units-to-size(0.5) 0;
+    max-width: 70%;
+    margin: auto;
     text-align: center;
 }
 
@@ -223,7 +307,7 @@ section#about {
     @include graph-paper-background("green");
     
     p:last-of-type {
-        font-size: Max(23px, units-to-size(0.35));
+        font-size: Max(25px, units-to-size(0.35));
     }
 
     .footer-orbs {
@@ -305,7 +389,7 @@ footer {
     
         h1 {
             font-size: min-units-to-size(0.82);
-            margin-bottom: min-units-to-size(0.3);
+            margin-bottom: min-units-to-size($header-h1-margin-bottom);
         }
     
         #gravity-image {
@@ -314,13 +398,11 @@ footer {
     
         p {
             // font-size: min-units-to-size(0.315);
-            margin: min-units-to-size(0.2);
+            margin: min-units-to-size($header-p-margin);
         }
-    
-        a {    
-            img {
-                width: min-units-to-size(2);
-            }
+
+        a {
+            width: min-units-to-size(2);
         }
     }
 
@@ -328,6 +410,16 @@ footer {
         height: calc(100% + #{$min-arrow-height});
         background-size: $min-arrow-width;
         animation-name: min-arrow-down;
+    }
+
+    .arrows-cover {
+        height: $min-arrow-height;
+        top: calc(-1 * #{$min-arrow-height});
+    }
+    
+    .arrows-cover-fixed {
+        width: $min-arrow-height;
+        left: calc(-1 * #{$min-arrow-height});
     }
     
     .arrows-fixed {
@@ -365,6 +457,11 @@ footer {
             width: min-units-to-size(1);
             top: min-units-to-size(0.15);
             animation-name: min-orb-left-to-right;
+            animation-duration: 2s;
+
+            .orb-image {
+                animation-duration: 10s;
+            }
         }
     
         @keyframes min-orb-left-to-right {
@@ -382,29 +479,31 @@ footer {
         background-size: auto min-units-to-size(0.05);
         height: min-units-to-size(0.05);
     }
-    
-    // h2 {
-    //     font-size: min-units-to-size(0.45);
-    // }
-    
-    // a, p {
 
-    //     font-size: min-units-to-size(0.225);
-    // }
+    #iPhone {
+        width: min-units-to-size($iPhoneUnitsWidth);
+        height: min-units-to-size($iPhoneUnitsWidth * $iPhoneImageHeightWidthRatio);
+        margin-bottom: min-units-to-size(0.5);
+
+        #video-container {
+            margin: auto;
+            width: min-units-to-size(3);
+            top: min-units-to-size(.23);
+            left: min-units-to-size(.24);
+        }
     
-    // h3 {
-    //     font-size: min-units-to-size(0.3);
-    // }
+        video {
+            border-radius: min-units-to-size(0.2);
+        }
+    }
     
     section .container {
-        padding: min-units-to-size(0.5) min-units-to-size(1);
+        padding: min-units-to-size(0.5) min-units-to-size(0.8);
+        max-width: 100%;
     }
     
     section#about {
-        // p:last-of-type {
-        //     font-size: min-units-to-size(0.35);
-        // }
-    
+   
         .footer-orbs {
             height: min-units-to-size(1);
             background-size: auto min-units-to-size(1);
@@ -417,15 +516,6 @@ footer {
         div {
             margin: min-units-to-size(0.4);
         }
-    
-        // a {
-        //     font-size: min-units-to-size(0.22);
-        // }
-    
-        // small {
-        //     font-size: min-units-to-size(0.22);
-            
-        // }
     }
 }
 

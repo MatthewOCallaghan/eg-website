@@ -57,6 +57,11 @@ function minifyImages() {
             .pipe(dest('dist/images'));
 }
 
+function copyVideos() {
+    return src('src/videos/*')
+            .pipe(dest('dist/videos'));
+}
+
 function cleanDist() {
     return del('dist');
 }
@@ -77,4 +82,4 @@ exports.clearCache = clearCache;
 
 exports.default = series(setupBrowserSync, processSass, watchFiles);
 
-exports.build = series(cleanDist, processSass, parallel(buildFiles, minifyImages));
+exports.build = series(cleanDist, processSass, parallel(buildFiles, minifyImages, copyVideos));
