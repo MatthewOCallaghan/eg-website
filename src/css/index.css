@@ -148,7 +148,7 @@ h2 {
 a, p {
   font-family: "Nothing You Could Do", cursive;
   text-align: center;
-  font-size: Max(20px, Min(calc(100vw * 0.225 / 9), calc(112px * 0.225))); }
+  font-size: Max(20px, Min(calc(100vw * 0.25 / 9), calc(112px * 0.25))); }
 
 h3 {
   font-family: "Permanent Marker", cursive;
@@ -157,8 +157,10 @@ h3 {
 
 #iPhone {
   margin: auto;
-  width: Min(calc(100vw * 3.45 / 9), calc(112px * 3.45));
-  height: Min(calc(100vw * 6.92325 / 9), calc(112px * 6.92325));
+  width: Min(calc(100vw * 3.5 / 9), calc(112px * 3.5));
+  min-width: Min(300px, 79vw);
+  height: Min(calc(100vw * 7.02358 / 9), calc(112px * 7.02358));
+  min-height: Min(602.02156px, 158.53235vw);
   position: relative;
   margin-bottom: Min(calc(100vw * 0.5 / 9), calc(112px * 0.5)); }
   #iPhone::after {
@@ -180,18 +182,18 @@ h3 {
     opacity: 0; }
   #iPhone #video-container {
     margin: auto;
-    width: Min(calc(100vw * 3 / 9), calc(112px * 3));
+    width: 87%;
     position: absolute;
     z-index: 5;
     display: block;
-    top: Min(calc(100vw * 0.23 / 9), calc(112px * 0.23));
-    left: Min(calc(100vw * 0.24 / 9), calc(112px * 0.24)); }
+    top: 3.3%;
+    left: 6.7%; }
   #iPhone video {
-    border-radius: Min(calc(100vw * 0.2 / 9), calc(112px * 0.2));
+    border-radius: 10% / 4.98321%;
     outline: none; }
 
 section .container {
-  padding: Min(calc(100vw * 0.5 / 9), calc(112px * 0.5)) 0;
+  padding: Min(calc(100vw * 0.5 / 9), calc(112px * 0.5)) 0 Min(calc(100vw * 1 / 9), calc(112px * 1)) 0;
   max-width: 70%;
   margin: auto;
   text-align: center; }
@@ -199,13 +201,61 @@ section .container {
 section#about {
   background-image: url("../images/graph-paper-green.png"); }
   section#about p:last-of-type {
-    font-size: Max(25px, Min(calc(100vw * 0.35 / 9), calc(112px * 0.35))); }
+    font-size: Max(24px, Min(calc(100vw * 0.35 / 9), calc(112px * 0.35))); }
+  section#about #screenshots {
+    display: flex;
+    align-items: flex-start;
+    min-width: Min(300px, 79vw); }
   section#about .footer-orbs {
     height: Min(calc(100vw * 1 / 9), calc(112px * 1));
     background-image: url("../images/footer-orbs.svg");
     background-repeat: repeat-x;
     background-size: auto Min(calc(100vw * 1 / 9), calc(112px * 1));
     background-position-x: center; }
+
+section#about .about-text {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: auto Min(40%, 450px);
+  column-gap: Min(calc(100vw * 0.5 / 9), calc(112px * 0.5));
+  row-gap: Min(calc(100vw * 0.4 / 9), calc(112px * 0.4));
+  grid-template-areas: "line1 line1" "line2 screenshot" "line3 screenshot" "line4 screenshot" "line5 screenshot"; }
+  @media only screen and (min-width: 801px) {
+    section#about .about-text p:last-of-type {
+      margin-bottom: 0; } }
+  section#about .about-text p:nth-child(1) {
+    grid-area: line1; }
+  section#about .about-text p:nth-child(2) {
+    grid-area: line2; }
+  section#about .about-text p:nth-child(3) {
+    grid-area: line3; }
+  section#about .about-text p:nth-child(4) {
+    grid-area: line4; }
+  section#about .about-text p:nth-child(5) {
+    grid-area: line5; }
+  section#about .about-text p {
+    margin: 0; }
+  section#about .about-text #screenshots {
+    grid-area: screenshot; }
+  @media only screen and (max-width: 1650px) {
+    section#about .about-text {
+      grid-template-areas: "line1 line1" "line2 screenshot" "line3 screenshot" "line4 screenshot" "line5 line5"; }
+      section#about .about-text #screenshots {
+        align-items: center; } }
+  @media only screen and (max-width: 1350px) {
+    section#about .about-text {
+      grid-template-areas: "line1 line1" "line2 line2" "line3 screenshot" "line4 screenshot" "line5 line5"; } }
+  @media only screen and (max-width: 800px) {
+    section#about .about-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      row-gap: 0; }
+      section#about .about-text p {
+        margin-bottom: Max(Min(calc(100vw * 0.4 / 9), calc(112px * 0.4)), 20px); }
+      section#about .about-text #screenshots {
+        width: Min(calc(100vw * 3.5 / 9), calc(112px * 3.5));
+        margin-top: 20px; } }
 
 footer {
   background-image: url("../images/footer-blocks.png");
@@ -230,10 +280,14 @@ footer {
     text-decoration: underline; }
   footer a:hover, footer a:focus {
     text-decoration: none; }
-  footer .copyright {
+  footer .smallprint {
     display: flex;
     flex-direction: column;
     justify-content: center; }
+    footer .smallprint a {
+      font-family: "Nothing You Could Do", cursive; }
+    footer .smallprint small:first-of-type {
+      margin-bottom: 20px; }
   footer small {
     font-family: "Nothing You Could Do", cursive;
     font-size: Max(14px, Min(calc(100vw * 0.22 / 9), calc(112px * 0.22))); }
@@ -298,22 +352,17 @@ footer {
     background-size: auto calc(13vw * 0.05);
     height: calc(13vw * 0.05); }
   #iPhone {
-    width: calc(13vw * 3.45);
-    height: calc(13vw * 6.92325);
     margin-bottom: calc(13vw * 0.5); }
     #iPhone #video-container {
-      margin: auto;
-      width: calc(13vw * 3);
-      top: calc(13vw * 0.23);
-      left: calc(13vw * 0.24); }
-    #iPhone video {
-      border-radius: calc(13vw * 0.2); }
+      margin: auto; }
   section .container {
-    padding: calc(13vw * 0.5) calc(13vw * 0.8);
+    padding: calc(13vw * 0.5) calc(13vw * 0.8) calc(13vw * 1) calc(13vw * 0.8);
     max-width: 100%; }
   section#about .footer-orbs {
     height: calc(13vw * 1);
     background-size: auto calc(13vw * 1); }
+  section#about #screenshots {
+    width: calc(13vw * 3.5); }
   footer {
     background-size: calc(13vw * 5.5); }
     footer div {
@@ -325,3 +374,8 @@ Colours:
 Arrow in mutable: 153, 153, 153, 31
 Arrow in fixed: 200, 200, 200, 255
 */
+header p {
+  margin-bottom: 0; }
+
+header a {
+  display: none; }

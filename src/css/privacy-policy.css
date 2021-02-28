@@ -1,0 +1,35 @@
+body {
+  background-image: url("../images/graph-paper-blue.png");
+  background-repeat: repeat;
+  background-position-x: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: Max(5vw, 25px);
+  min-height: 100%;
+  box-sizing: border-box; }
+
+h1, p, a {
+  text-align: center;
+  color: black;
+  margin: 0;
+  margin-bottom: 30px; }
+
+h1 {
+  font-family: "Permanent Marker", cursive;
+  font-size: Max(4vw, 40px); }
+
+p, a {
+  font-family: "Nothing You Could Do", cursive;
+  font-size: Max(2vw, 20px);
+  overflow-wrap: break-word; }
+
+a {
+  text-decoration: underline; }
+
+a:hover {
+  text-decoration: none; }
+
+.home-link {
+  font-family: "Permanent Marker", cursive;
+  margin: 40px 0; }

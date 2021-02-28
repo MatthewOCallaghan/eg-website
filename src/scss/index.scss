@@ -239,7 +239,7 @@ h2 {
 a, p {
     font-family: $handwriting;
     text-align: center;
-    font-size: Max(20px, units-to-size(0.225)); // Min size was originally 15px (which is to scale with other min sizes) but it was too small (especailly with handwriting font)
+    font-size: Max(20px, units-to-size(0.25)); // Min size was originally 15px (which is to scale with other min sizes) but it was too small (especailly with handwriting font)
 }
 
 h3 {
@@ -248,12 +248,15 @@ h3 {
     margin-top: 0;
 }
 
-$iPhoneUnitsWidth: 3 * 1.15; // Video is 3 units wide, iPhone image is about 1.15 width of screen portion
+$iPhoneUnitsWidth: 3.5; // Video is 3 units wide, iPhone image is about 1.15 width of screen portion
 $iPhoneImageHeightWidthRatio: 2978 / 1484; // iPhone image size is 1484x2978
+$iPhonePxMinWidth: 300px;
 #iPhone {
     margin: auto;
     width: units-to-size($iPhoneUnitsWidth);
+    min-width: Min($iPhonePxMinWidth, 79vw);
     height: units-to-size($iPhoneUnitsWidth * $iPhoneImageHeightWidthRatio);
+    min-height: Min($iPhonePxMinWidth * $iPhoneImageHeightWidthRatio, 79vw * $iPhoneImageHeightWidthRatio);
     position: relative;
     margin-bottom: units-to-size(0.5);
 
@@ -282,22 +285,22 @@ $iPhoneImageHeightWidthRatio: 2978 / 1484; // iPhone image size is 1484x2978
 
     #video-container {
         margin: auto;
-        width: units-to-size(3);
+        width: 87%;
         position: absolute;
         z-index: 5;
         display: block;
-        top: units-to-size(.23);
-        left: units-to-size(.24);
+        top: 3.3%;
+        left: 6.7%;
     }
 
     video {
-        border-radius: units-to-size(0.2);
+        border-radius: #{10%} / (10% * 1484 / 2978); // Use interpolation so forward slash is not interpreted as division
         outline: none;
     }
 }
 
 section .container {
-    padding: units-to-size(0.5) 0;
+    padding: units-to-size(0.5) 0 units-to-size(1) 0;
     max-width: 70%;
     margin: auto;
     text-align: center;
@@ -307,7 +310,13 @@ section#about {
     @include graph-paper-background("green");
     
     p:last-of-type {
-        font-size: Max(25px, units-to-size(0.35));
+        font-size: Max(24px, units-to-size(0.35));
+    }
+
+    #screenshots {
+        display: flex;
+        align-items: flex-start;
+        min-width: Min($iPhonePxMinWidth, 79vw);
     }
 
     .footer-orbs {
@@ -319,19 +328,100 @@ section#about {
     }
 }
 
+section#about .about-text {
+    display: grid;
+    grid-template-rows: auto; //repeat(5, auto);
+    grid-template-columns: auto Min(40%, 450px);// auto units-to-size(4);
+    column-gap: units-to-size(0.5);
+    row-gap: units-to-size(0.4);
+
+    @media only screen and (min-width: 801px) {
+        p:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+    
+
+    grid-template-areas: 
+        "line1 line1"
+        "line2 screenshot"
+        "line3 screenshot"
+        "line4 screenshot"
+        "line5 screenshot";
+
+    @for $i from 1 through 5 {
+        p:nth-child(#{$i}) {
+            grid-area: line#{$i};
+        }
+    }
+
+    p {
+        margin: 0;
+    }
+
+    #screenshots {
+        grid-area: screenshot;
+    }
+
+    // @media only screen and (max-width: 1550px) {
+    //     grid-template-areas: 
+    //         "line1 line1"
+    //         "line2 screenshot"
+    //         "line3 screenshot"
+    //         "line4 screenshot"
+    //         "line5 screenshot";
+    // }
+
+    @media only screen and (max-width: 1650px) {
+        grid-template-areas: 
+            "line1 line1"
+            "line2 screenshot"
+            "line3 screenshot"
+            "line4 screenshot"
+            "line5 line5";
+
+        #screenshots {
+            align-items: center;
+        }
+    }
+
+    @media only screen and (max-width: 1350px) {
+        grid-template-areas:
+            "line1 line1"
+            "line2 line2"
+            "line3 screenshot"
+            "line4 screenshot"
+            "line5 line5";
+    }
+
+    @media only screen and (max-width: 800px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 0;
+
+        p {
+            margin-bottom: Max(units-to-size(0.4), 20px);
+        }
+
+        #screenshots {
+            width: units-to-size(3.5);
+            margin-top: 20px;
+        }
+    }
+}
+
 footer {
 
     background-image: url("../images/footer-blocks.png");
     background-position-x: center;
     background-repeat: repeat;
-    // background-size: units-to-size(4); // Image is 400x200px so 4 blocks wide
     background-size: units-to-size(5.5);
     color: white;
     
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    // padding: units-to-size(0.3);
 
     div {
         margin: units-to-size(0.4);
@@ -357,10 +447,18 @@ footer {
         text-decoration: none;
     }
 
-    .copyright {
+    .smallprint {
         display: flex;
         flex-direction: column;
         justify-content: center;
+
+        a {
+            font-family: $handwriting;
+        }
+
+        small:first-of-type {
+            margin-bottom: 20px;
+        }
     }
 
     small {
@@ -397,7 +495,6 @@ footer {
         }
     
         p {
-            // font-size: min-units-to-size(0.315);
             margin: min-units-to-size($header-p-margin);
         }
 
@@ -481,24 +578,15 @@ footer {
     }
 
     #iPhone {
-        width: min-units-to-size($iPhoneUnitsWidth);
-        height: min-units-to-size($iPhoneUnitsWidth * $iPhoneImageHeightWidthRatio);
         margin-bottom: min-units-to-size(0.5);
 
         #video-container {
             margin: auto;
-            width: min-units-to-size(3);
-            top: min-units-to-size(.23);
-            left: min-units-to-size(.24);
-        }
-    
-        video {
-            border-radius: min-units-to-size(0.2);
         }
     }
     
     section .container {
-        padding: min-units-to-size(0.5) min-units-to-size(0.8);
+        padding: min-units-to-size(0.5) min-units-to-size(0.8) min-units-to-size(1) min-units-to-size(0.8);
         max-width: 100%;
     }
     
@@ -507,6 +595,10 @@ footer {
         .footer-orbs {
             height: min-units-to-size(1);
             background-size: auto min-units-to-size(1);
+        }
+
+        #screenshots {
+            width: min-units-to-size(3.5);
         }
     }
 
@@ -525,3 +617,12 @@ Colours:
 Arrow in mutable: 153, 153, 153, 31
 Arrow in fixed: 200, 200, 200, 255
 */
+
+// TODO: REMOVE WHEN RELEASED ON APP STORE
+header p {
+    margin-bottom: 0;
+}
+
+header a {
+    display: none;
+}
