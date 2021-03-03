@@ -16,15 +16,15 @@ $handwriting: "Nothing You Could Do", cursive;
     background-image: url("../images/graph-paper-#{$colour}.png");
 }
 
+$max-unit-width: 112px;
 @function units-to-size($units) {
-    @return Min(calc(100vw * #{$units} / 9), calc(112px * #{$units})); // Unit size ideally 1/9 of screen width, but must be >= 73px and <= 112px
+    @return Min(calc(100vw * #{$units} / 9), #{$max-unit-width * $units}); // Unit size ideally 1/9 of screen width, but must be >= 73px and <= 112px
 }
 
 // Used below break point
 // Lowers min number of units in width to 8
 @function min-units-to-size($units) {
     @return calc(13vw * #{$units});
-    // @return calc(12.5vw * #{$units});
 }
 
 $arrow-height: units-to-size(0.9);
@@ -55,6 +55,17 @@ header {
     @include graph-paper-background("blue");
     position: relative;
 
+    .social {
+        position: absolute;
+        // height: 40px;
+        top: Min(20px, 2vw);
+        right: Min(20px, 2vw);
+
+        max-height: 40px;
+        min-height: 20px;
+        height: 4vw;
+    }
+
     .contents {
         padding: units-to-size(0.5) units-to-size(1);
     }
@@ -68,7 +79,8 @@ header {
     }
 
     #gravity-image {
-        width: units-to-size(7);
+        max-width: $max-unit-width * 7;
+        // width: units-to-size(7);
         margin: auto;
     }
 
@@ -80,7 +92,7 @@ header {
         margin: units-to-size($header-p-margin);
     }
 
-    a {
+    a.download {
         display: block;
         margin: auto;
         
@@ -90,6 +102,20 @@ header {
         img {
             width: 100%;
             height: auto;
+        }
+    }
+
+    @media only screen and (max-width: 600px) {
+        div.contents {
+            padding-top: 15px;
+        }
+
+        .social {
+            position: relative;
+            top: 0;
+            right: 0;
+            text-align: right;
+            margin-bottom: 15px;
         }
     }
 }
@@ -490,9 +516,9 @@ footer {
             margin-bottom: min-units-to-size($header-h1-margin-bottom);
         }
     
-        #gravity-image {
-            width: min-units-to-size(7);
-        }
+        // #gravity-image {
+        //     width: min-units-to-size(7);
+        // }
     
         p {
             margin: min-units-to-size($header-p-margin);
@@ -621,8 +647,4 @@ Arrow in fixed: 200, 200, 200, 255
 // TODO: REMOVE WHEN RELEASED ON APP STORE
 header p {
     margin-bottom: 0;
-}
-
-header a {
-    display: none;
 }

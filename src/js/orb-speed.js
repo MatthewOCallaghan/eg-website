@@ -17,3 +17,4 @@ function setOrbSpeed() {
 
 setOrbSpeed();
 window.addEventListener('resize', setOrbSpeed);
+window.addEventListener("orientationchange", setOrbSpeed);

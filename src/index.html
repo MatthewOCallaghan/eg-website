@@ -10,18 +10,37 @@
         <!-- endbuild -->
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script type="application/ld+json">
+            {
+              "@context": "https://schema.org",
+              "@type": "VideoObject",
+              "name": "Experimental Gravity - OUT NOW",
+              "description": "Experimental Gravity is the unique new physics-based puzzle game that puts you in control of gravity. It is available on the App Store now.",
+              "thumbnailUrl": "https://www.experimentalgravity.com/images/app-preview-thumbnail.jpg",
+              "uploadDate": "2021-03-01T09:00:00+00:00",
+              "duration": "PT29S",
+              "contentUrl": "https://www.example.com/videos/app-preview.mp4"
+            }
+        </script>
     </head>
     <body>
         <header class="graph-paper">
             <div class="arrows-cover"></div>
             <div class="arrows"></div>
+            
             <div class="contents">
+                <div class="social">
+                    <a href="https://www.youtube.com/channel/UCesx4XJR_iaRpPF36geNlRA" target="_blank">
+                        <img src="images/youtube-icon.png" height="100%" width="auto" alt="YouTube">
+                    </a>
+                </div>
                 <h1>Experimental</h1>
-                <div id="gravity-image"><img src="images/gravity.svg" alt="Gravity" width="100%" height="auto"></div>
+                <div id="gravity-image"><img src="images/gravity.svg" alt="Gravity Orb-style letters resting on blocks" width="100%" height="auto"></div>
                 <p>What goes up, doesn't have to come down...</p>
-                <a href="#" id="app-store">
+                <!-- <a href="#" class="download" id="app-store">
                     <img alt="Download on the App Store" src="images/app-store-download.svg">
-                </a>
+                </a> -->
             </div>
             
         </header>
@@ -39,8 +58,8 @@
             <div class="container">
                 <div id="iPhone">
                     <div id="video-container">
-                        <video width="100%" height="auto" controls muted autoplay>
-                            <source src="videos/iPhone11.mp4">
+                        <video width="100%" height="auto" poster="images/app-preview-thumbnail.jpg" controls muted autoplay>
+                            <source src="videos/app-preview.mp4">
                         </video>
                     </div>
                 </div>
@@ -73,7 +92,7 @@
             </div>
         </footer>
         <!-- build:js js/index.min.js -->
-        <!-- <script type="text/javascript" src="js/orb-speed.js" defer></script> -->
+        <script type="text/javascript" src="js/orb-speed.js" defer></script>
         <!-- endbuild -->
         <script>
             var resizeTimer;
